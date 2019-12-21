@@ -5,9 +5,14 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.SearchManager;
 import android.graphics.Movie;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.SearchView;
 
 import com.example.newsapp.R;
 import com.example.newsapp.adapters.RecyclerViewAdapter;
@@ -48,10 +53,10 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setHasFixedSize(true);
-        loadData();
+        loadData("");
     }
 
-    public void loadData(){
+    public void loadData(final String keyword){
         if (retrofit == null) {
             retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         }
@@ -59,7 +64,14 @@ public class MainActivity extends AppCompatActivity {
         NewsApiInterface apiInterface = retrofit.create(NewsApiInterface.class);
 
         Call <News> call;
-        call = apiInterface.getNews("us", API_KEY);
+
+        //if there's a keyword, fetch data using it, else fetch top headlines
+        if ( keyword.length()>2 ){
+            call = apiInterface.getNewsWithSearch(keyword, "en", "publishedAt", API_KEY);
+        } else {
+            Log.e(TAG, "i'm here");
+            call = apiInterface.getNews("us", API_KEY);
+        }
         call.enqueue(new Callback<News>(){
             @Override
             public void onResponse(Call<News> call, Response<News> response){
@@ -73,5 +85,32 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, throwable.toString());
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
+        final SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        MenuItem searchMenuItem = menu.findItem(R.id.action_search);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if (query.length() > 2){
+                    loadData(query);
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        searchMenuItem.getIcon().setVisible(false, false);
+        return true;
     }
 }
