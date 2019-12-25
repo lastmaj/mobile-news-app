@@ -28,17 +28,18 @@ public class ArticleDetailActivity extends AppCompatActivity {
 
 
         //getting extras
-        String title = getIntent().getExtras().getString("title");
+        mTitle = getIntent().getExtras().getString("title");
         String author = getIntent().getExtras().getString("author");
         String published_at = getIntent().getExtras().getString("publishedAt");
         String description = getIntent().getExtras().getString("description");
         mUrl = getIntent().getExtras().getString("url");
         String imageUrl = getIntent().getExtras().getString("imageUrl");
         String content = getIntent().getExtras().getString("content");
+        mSource = getIntent().getExtras().getString("source");
 
         //fetching views from layout
         tv_title = findViewById(R.id.title);
-        tv_title.setText(title);
+        tv_title.setText(mTitle);
 
         tv_description = findViewById(R.id.description);
         tv_description.setText(description);
@@ -60,5 +61,15 @@ public class ArticleDetailActivity extends AppCompatActivity {
     //handle click that will open the article in the browser
     public void openArticleUrl(View view) {
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(this.mUrl)));
+    }
+
+    //handle click for share
+    public void shareArticle(View view){
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, mSource);
+        String body = mTitle + "\n" + mUrl + "\n" + "Shared from the News App" + "\n";
+        intent.putExtra(Intent.EXTRA_TEXT, body);
+        startActivity(intent);
     }
 }
