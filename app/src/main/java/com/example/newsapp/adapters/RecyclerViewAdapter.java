@@ -54,7 +54,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             public void onClick (View v) {
                 Intent intent = new Intent(mContext, ArticleDetailActivity.class);
                 intent.putExtra("title", mData.get(viewHolder.getAdapterPosition()).getTitle());
-                intent.putExtra("author", mData.get(viewHolder.getAdapterPosition()).getAuthor());
                 intent.putExtra("description", mData.get(viewHolder.getAdapterPosition()).getDescription());
                 intent.putExtra("publishedAt", mData.get(viewHolder.getAdapterPosition()).getPublishedAt());
                 intent.putExtra("url", mData.get(viewHolder.getAdapterPosition()).getUrl());
@@ -70,7 +69,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.title.setText(mData.get(position).getTitle());
-        holder.author.setText(mData.get(position).getAuthor());
         holder.published_at.setText("\u2022" + formatDate(mData.get(position).getPublishedAt()));
         holder.source.setText(mData.get(position).getSource().getName());
 
@@ -84,7 +82,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView title, desc, author, published_at, source, time;
+        TextView title , published_at, source, time;
         ImageView imageView;
         ConstraintLayout view_container;
 
@@ -93,7 +91,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
             view_container = itemView.findViewById(R.id.article_row_container);
             title = itemView.findViewById(R.id.title);
-            author = itemView.findViewById(R.id.author);
             published_at = itemView.findViewById(R.id.published_at);
             source = itemView.findViewById(R.id.source);
             imageView = itemView.findViewById(R.id.thumbnail);

@@ -16,7 +16,7 @@ public interface NewsApiInterface {
 
     @GET("everything")
     Call<News> getNewsWithSearch(
-            @Query("q") String keyword,
+            @Query("qInTitle") String keyword,
             @Query("language") String language,
             @Query("sortBy") String sortBy,
             @Query("apiKey") String apiKey

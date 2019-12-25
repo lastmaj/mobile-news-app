@@ -2,7 +2,10 @@ package com.example.newsapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,7 +18,7 @@ import org.w3c.dom.Text;
 public class ArticleDetailActivity extends AppCompatActivity {
 
     private ImageView imageView;
-    private TextView date, time, tv_title, tv_content;
+    private TextView date, time, tv_title, tv_description, tv_author;
     private String mUrl, mImg, mTitle, mAuthor, mDate, mSource;
 
     @Override
@@ -29,16 +32,19 @@ public class ArticleDetailActivity extends AppCompatActivity {
         String author = getIntent().getExtras().getString("author");
         String published_at = getIntent().getExtras().getString("publishedAt");
         String description = getIntent().getExtras().getString("description");
-        String url = getIntent().getExtras().getString("url");
+        mUrl = getIntent().getExtras().getString("url");
         String imageUrl = getIntent().getExtras().getString("imageUrl");
         String content = getIntent().getExtras().getString("content");
 
-        //
+        //fetching views from layout
         tv_title = findViewById(R.id.title);
         tv_title.setText(title);
 
-        tv_content = findViewById(R.id.content);
-        tv_content.setText(content);
+        tv_description = findViewById(R.id.description);
+        tv_description.setText(description);
+
+        tv_author = findViewById(R.id.author);
+        tv_author.setText(author);
 
         imageView = findViewById(R.id.img);
 
@@ -49,5 +55,10 @@ public class ArticleDetailActivity extends AppCompatActivity {
         time = findViewById(R.id.time);
 
 
+    }
+
+    //handle click that will open the article in the browser
+    public void openArticleUrl(View view) {
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(this.mUrl)));
     }
 }
