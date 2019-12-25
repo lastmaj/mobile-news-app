@@ -93,4 +93,17 @@
         <item>zh</item>
     </string-array>
 
+    <!-- Sorting Preference for search -->
+
+    <string-array name="sortby_entries">
+        <item>Relevancy</item>
+        <item>Popularity</item>
+        <item>Publishing time</item>
+    </string-array>
+
+    <string-array name="sortby_values">
+        <item>relevancy</item>
+        <item>popularity</item>
+        <item>publishedAt</item>
+    </string-array>
 </resources>

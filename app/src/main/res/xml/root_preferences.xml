@@ -34,6 +34,14 @@
             app:title="Language"
             app:useSimpleSummaryProvider="true" />
 
+        <ListPreference
+            app:defaultValue=" "
+            app:entries="@array/sortby_entries"
+            app:entryValues="@array/sortby_values"
+            app:key="sortBy"
+            app:title="Sorting"
+            app:useSimpleSummaryProvider="true" />
+
     </PreferenceCategory>
 
     <PreferenceCategory app:title="Searching">

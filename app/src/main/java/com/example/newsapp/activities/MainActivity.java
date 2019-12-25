@@ -72,10 +72,12 @@ public class MainActivity extends AppCompatActivity {
         if ( keyword.length()>2 ){
             //load language for search results
             String prefLanguage = sharedPreferences.getString("language", "");
-            call = apiInterface.getNewsWithSearch(keyword, prefLanguage, "publishedAt", API_KEY);
+            String prefSort = sharedPreferences.getString("sortBy", "publishedAt");
+
+            //declare call
+            call = apiInterface.getNewsWithSearch(keyword, prefLanguage, prefSort, API_KEY);
         } else {
             //load country from shared preferences to fetch top headlines
-
             String prefCountry = sharedPreferences.getString("country", "us");
             call = apiInterface.getNews(prefCountry, API_KEY);
         }
