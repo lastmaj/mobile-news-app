@@ -1,12 +1,14 @@
 package com.example.newsapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.SearchManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Movie;
 import android.os.Bundle;
 import android.util.Log;
@@ -61,18 +63,20 @@ public class MainActivity extends AppCompatActivity {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         }
-
         NewsApiInterface apiInterface = retrofit.create(NewsApiInterface.class);
-
         Call <News> call;
 
         //if there's a keyword, fetch data using it, else fetch top headlines
         if ( keyword.length()>2 ){
             call = apiInterface.getNewsWithSearch(keyword, "en", "publishedAt", API_KEY);
         } else {
-            Log.e(TAG, "i'm here");
-            call = apiInterface.getNews("us", API_KEY);
+            //load country from shared preferences to fetch top headlines
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+            String prefCountry = sharedPreferences.getString("country", "us");
+            Log.e(TAG, prefCountry);
+            call = apiInterface.getNews(prefCountry, API_KEY);
         }
+
         call.enqueue(new Callback<News>(){
             @Override
             public void onResponse(Call<News> call, Response<News> response){

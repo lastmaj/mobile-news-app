@@ -9,4 +9,21 @@
         <item>reply</item>
         <item>reply_all</item>
     </string-array>
+
+
+    <!-- Country Preference -->
+    <string-array name="country_entries">
+        <item>United Arab Emirates</item>
+        <item>Argentina</item>
+        <item>Austria</item>
+        <item>Australia</item>
+    </string-array>
+
+    <string-array name="country_values">
+        <item>ae</item>
+        <item>ar</item>
+        <item>at</item>
+        <item>au</item>
+    </string-array>
+
 </resources>
