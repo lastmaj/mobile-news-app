@@ -19,7 +19,7 @@
     <PreferenceCategory app:title="Preferences">
 
         <ListPreference
-            app:defaultValue="USA"
+            app:defaultValue="us"
             app:entries="@array/country_entries"
             app:entryValues="@array/country_values"
             app:title="Country"
@@ -27,11 +27,11 @@
             app:useSimpleSummaryProvider="true" />
 
         <ListPreference
-            app:defaultValue="reply"
-            app:entries="@array/reply_entries"
-            app:entryValues="@array/reply_values"
-            app:key="reply"
-            app:title="Country"
+            app:defaultValue=" "
+            app:entries="@array/language_entries"
+            app:entryValues="@array/language_values"
+            app:key="language"
+            app:title="Language"
             app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
@@ -47,7 +47,7 @@
             app:key="attachment"
             app:summaryOff="attachment summary off"
             app:summaryOn="attachment summary on"
-            app:title="attachement summary" />
+            app:title="attachment summary" />
 
     </PreferenceCategory>
 

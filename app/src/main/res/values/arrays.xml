@@ -17,6 +17,22 @@
         <item>Argentina</item>
         <item>Austria</item>
         <item>Australia</item>
+        <item>Belgium</item>
+        <item>Brazil</item>
+        <item>Canada</item>
+        <item>China</item>
+        <item>Colombia</item>
+        <item>Cuba</item>
+        <item>Czechia</item>
+        <item>Germany</item>
+        <item>Egypt</item>
+        <item>France</item>
+        <item>Great Britain</item>
+        <item>Greece</item>
+        <item>Hong Gong</item>
+        <item>Hungary</item>
+        <item>Indonesia</item>
+        <item>Switzerland</item>
     </string-array>
 
     <string-array name="country_values">
@@ -24,6 +40,57 @@
         <item>ar</item>
         <item>at</item>
         <item>au</item>
+        <item>be</item>
+        <item>br</item>
+        <item>ca</item>
+        <item>cn</item>
+        <item>co</item>
+        <item>cu</item>
+        <item>cz</item>
+        <item>de</item>
+        <item>eg</item>
+        <item>fr</item>
+        <item>gb</item>
+        <item>gr</item>
+        <item>hk</item>
+        <item>hu</item>
+        <item>id</item>
+        <item>ch</item>
+    </string-array>
+
+    <!-- Language preference -->
+    <string-array name="language_entries">
+        <item>All languages</item>
+        <item>Arabic</item>
+        <item>German</item>
+        <item>English</item>
+        <item>Spanish</item>
+        <item>French</item>
+        <item>Italian</item>
+        <item>Dutch</item>
+        <item>Norwegian</item>
+        <item>Portuguese</item>
+        <item>Russian</item>
+        <item>Sami (Northern)</item>
+        <item>Ud</item>
+        <item>Chinese</item>
+    </string-array>
+
+    <string-array name="language_values">
+        <item> </item>
+        <item>ar</item>
+        <item>de</item>
+        <item>en</item>
+        <item>es</item>
+        <item>fr</item>
+        <item>it</item>
+        <item>nl</item>
+        <item>no</item>
+        <item>pt</item>
+        <item>ru</item>
+        <item>se</item>
+        <item>ud</item>
+        <item>zh</item>
     </string-array>
 
 </resources>

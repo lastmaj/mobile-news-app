@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Movie;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -66,14 +65,18 @@ public class MainActivity extends AppCompatActivity {
         NewsApiInterface apiInterface = retrofit.create(NewsApiInterface.class);
         Call <News> call;
 
+        //load shared preferences
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
         //if there's a keyword, fetch data using it, else fetch top headlines
         if ( keyword.length()>2 ){
-            call = apiInterface.getNewsWithSearch(keyword, "en", "publishedAt", API_KEY);
+            //load language for search results
+            String prefLanguage = sharedPreferences.getString("language", "");
+            call = apiInterface.getNewsWithSearch(keyword, prefLanguage, "publishedAt", API_KEY);
         } else {
             //load country from shared preferences to fetch top headlines
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
             String prefCountry = sharedPreferences.getString("country", "us");
-            Log.e(TAG, prefCountry);
             call = apiInterface.getNews(prefCountry, API_KEY);
         }
 
