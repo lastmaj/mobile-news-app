@@ -14,9 +14,10 @@
   ~ limitations under the License.
   -->
 
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory app:title="Preferences">
+    <PreferenceCategory app:title="Location">
 
         <ListPreference
             app:defaultValue="us"
@@ -34,6 +35,10 @@
             app:title="Language"
             app:useSimpleSummaryProvider="true" />
 
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Preferences">
+
         <ListPreference
             app:defaultValue=" "
             app:entries="@array/sortby_entries"
@@ -42,21 +47,13 @@
             app:title="Sorting"
             app:useSimpleSummaryProvider="true" />
 
-    </PreferenceCategory>
-
-    <PreferenceCategory app:title="Searching">
-
         <SwitchPreferenceCompat
-            app:key="sync"
-            app:title="Search for keyword in title only" />
-
-        <SwitchPreferenceCompat
-            app:dependency="sync"
-            app:key="attachment"
-            app:summaryOff="attachment summary off"
-            app:summaryOn="attachment summary on"
-            app:title="attachment summary" />
+            app:key="qInTitle"
+            app:summaryOff="Search for keywords in all of the article"
+            app:summaryOn="Search for keywords in the title only"
+            app:title="Rigid Search" />
 
     </PreferenceCategory>
+    
 
 </PreferenceScreen>

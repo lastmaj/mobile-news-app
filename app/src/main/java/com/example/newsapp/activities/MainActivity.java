@@ -74,8 +74,9 @@ public class MainActivity extends AppCompatActivity {
             String prefLanguage = sharedPreferences.getString("language", "");
             String prefSort = sharedPreferences.getString("sortBy", "publishedAt");
 
-            //declare call
-            call = apiInterface.getNewsWithSearch(keyword, prefLanguage, prefSort, API_KEY);
+            //check if user is using rigid search and declare call accordingly
+            Boolean prefInTitle = sharedPreferences.getBoolean("qInTitle", true);
+            call = (prefInTitle)?apiInterface.getNewsWithRigidSearch(keyword, prefLanguage, prefSort, API_KEY):apiInterface.getNewsWithNormalSearch(keyword, prefLanguage, prefSort, API_KEY);
         } else {
             //load country from shared preferences to fetch top headlines
             String prefCountry = sharedPreferences.getString("country", "us");
