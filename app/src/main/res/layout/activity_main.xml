@@ -5,22 +5,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activities.MainActivity">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Top Headlines"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp">
-
-        </TextView>
-    <androidx.recyclerview.widget.RecyclerView
+    tools:context=".activities.MainActivity"
+    android:background="@drawable/bg_gradient">
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:id="@+id/recycler_view">
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="wrap_content"
+        android:text="Top Headlines"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp">
+
+    </TextView>
+     <RelativeLayout
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content">
+
+
+         <androidx.recyclerview.widget.RecyclerView
+             android:id="@+id/recycler_view"
+             android:layout_width="match_parent"
+             android:layout_height="516dp"
+             android:layout_marginLeft="16dp"
+             android:layout_marginTop="8dp"
+             android:layout_marginRight="16dp"></androidx.recyclerview.widget.RecyclerView>
+     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        tools:visibility="visible">
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Weather" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Forex"
+            />
+    </LinearLayout>
 
 </LinearLayout>

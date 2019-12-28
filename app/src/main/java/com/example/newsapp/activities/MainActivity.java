@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.SearchView;
 
 import com.example.newsapp.R;
@@ -30,6 +32,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import com.example.newsapp.activities.weather;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -39,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerViewAdapter adapter;
     private List<Article> articles = new ArrayList<>();
-
+    private Button weatherBtn;
+    private Button forexBtn;
     private final static String API_KEY = "18ae7e49b6fb4db7ba5f05d04922f545";
 
 
@@ -49,6 +53,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = findViewById(R.id.recycler_view);
+        weatherBtn=findViewById(R.id.button4);
+        weatherBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openWeather();
+            }
+        });
+        forexBtn=findViewById(R.id.button5);
+        forexBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openforex();
+            }
+        });
+
+
         layoutManager = new LinearLayoutManager (MainActivity.this);
 
         recyclerView.setLayoutManager(layoutManager);
@@ -56,6 +76,16 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setHasFixedSize(true);
         loadData("");
+
+
+    }
+    public void openforex(){
+        Intent intent = new Intent(this,Forex.class);
+        startActivity(intent);
+    }
+    public void openWeather(){
+        Intent intent = new Intent(this,weather.class);
+        startActivity(intent);
     }
 
     public void loadData(final String keyword){
@@ -130,4 +160,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
+
 }
