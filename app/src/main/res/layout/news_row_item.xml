@@ -5,7 +5,7 @@
     android:id="@+id/article_row_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_gradient">
+    >
 
     <ImageView
         android:id="@+id/thumbnail"
